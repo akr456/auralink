@@ -1,0 +1,17 @@
+<div [class]="theme()" [class.dark]="theme() === 'dark'" class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
+  @if (isAuthenticated()) {
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside class="w-64 md:w-72 bg-slate-50 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex-shrink-0 overflow-y-auto">
+        <app-sidebar></app-sidebar>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 overflow-y-auto bg-slate-100 dark:bg-slate-900">
+        <app-feed></app-feed>
+      </main>
+    </div>
+  } @else {
+    <app-login></app-login>
+  }
+</div>

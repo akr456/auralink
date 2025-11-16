@@ -1,0 +1,40 @@
+<div class="h-full">
+  @if (selectedAura(); as aura) {
+    <!-- Feed Header -->
+    <header class="sticky top-0 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-sm z-10 border-b border-slate-200 dark:border-slate-800 p-4">
+      <div class="flex justify-between items-center max-w-4xl mx-auto">
+        <div>
+            <h2 class="text-xl font-bold">{{ aura.icon }} {{ aura.name }}</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">{{ aura.description }}</p>
+        </div>
+        <button class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold py-2 px-4 rounded-lg flex items-center transition-colors disabled:opacity-50 text-sm" title="Live Spaces (Coming Soon)" disabled>
+            <span class="text-md mr-2">📡</span>
+            Live Space
+        </button>
+      </div>
+    </header>
+    
+    <!-- Feed Content -->
+    <div class="p-4 md:p-6 space-y-4 max-w-4xl mx-auto">
+      <app-create-post></app-create-post>
+      @for (post of posts(); track post.id) {
+        <app-post [post]="post"></app-post>
+      }
+      @if(posts().length === 0) {
+        <div class="text-center py-16 px-4 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg">
+            <p class="text-sm text-slate-500 dark:text-slate-400">This Aura is quiet... for now.</p>
+            <p class="text-md font-semibold text-slate-800 dark:text-slate-100 mt-2">Be the first to share something!</p>
+        </div>
+      }
+    </div>
+
+  } @else {
+    <div class="h-full flex flex-col items-center justify-center text-center p-8">
+      <div class="w-20 h-20 rounded-xl bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-5xl font-bold text-slate-50 dark:text-slate-900 mb-6 animate-pulse">
+        A
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Welcome to AuraLink</h2>
+      <p class="text-slate-500 dark:text-slate-400 max-w-md">Select an Aura from the sidebar to see what's happening, or discover new ones with AI.</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,29 @@
+<div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-4">
+  <textarea 
+    [(ngModel)]="postContent"
+    (ngModelChange)="postContent.set($event)"
+    placeholder="What's on your mind?"
+    class="w-full bg-transparent text-slate-800 dark:text-slate-200 placeholder-slate-500 dark:placeholder-slate-400 rounded-md p-2 border-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950 transition-shadow outline-none resize-none"
+    rows="3">
+  </textarea>
+  <div class="flex justify-end items-center mt-2 space-x-2">
+    <button 
+      (click)="enhancePost()"
+      [disabled]="!postContent() || isEnhancing()"
+      class="px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
+      @if (isEnhancing()) {
+        <app-loader></app-loader>
+        <span class="ml-2">Enhancing...</span>
+      } @else {
+        <span class="text-md mr-1">✨</span>
+        <span>Enhance</span>
+      }
+    </button>
+    <button 
+      (click)="submitPost()"
+      [disabled]="!postContent() || isEnhancing()"
+      class="px-6 py-2 font-bold text-sm text-slate-50 bg-slate-900 hover:bg-slate-800 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+      Post
+    </button>
+  </div>
+</div>
